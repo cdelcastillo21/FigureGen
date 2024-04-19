@@ -4345,11 +4345,12 @@
                 USE netcdf
 #endif
 
-                IMPLICIT NONE
 
 #ifdef CMPI
-                INCLUDE 'mpif.h'
+                USE mpi_f08
 #endif
+
+                IMPLICIT NONE
 
 #ifdef NETCDF
                 INTEGER,ALLOCATABLE :: NC_Code(:)
@@ -10533,12 +10534,15 @@
                 USE netcdf
 #endif
 
+#ifdef CMPI
+                USE mpi_f08
+#endif
+
                 IMPLICIT NONE
 
 #ifdef CMPI
-                INCLUDE 'mpif.h'
                 INTEGER             :: Counter
-                INTEGER,ALLOCATABLE :: MPIRequests(:)
+                TYPE(MPI_Request),ALLOCATABLE :: MPIRequests(:)
                 INTEGER             :: RecordsFinished
                 INTEGER,ALLOCATABLE :: RecordsOnProcs(:)
 #endif
